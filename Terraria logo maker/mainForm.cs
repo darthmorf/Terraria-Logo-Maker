@@ -10,13 +10,22 @@ namespace Terraria_logo_maker
     public partial class mainForm : Form
     {
         imagePreview imgPreview;
+		InfoCredits IC;
         string theme = "";
 
         public mainForm()
         {
             InitializeComponent();
-            //creates the logo preview form
-            imgPreview = new imagePreview();
+			infoButton.MouseEnter += new System.EventHandler(infoButton_MouseEnter);
+			infoButton.MouseLeave += new System.EventHandler(infoButton_MouseLeave);
+			infoButton.Image = infoBtnImgLst.Images[0];
+
+			saveButton.MouseEnter += new System.EventHandler(saveButton_MouseEnter);
+			saveButton.MouseLeave += new System.EventHandler(saveButton_MouseLeave);
+			saveButton.Image = saveBtnImgLst.Images[0];
+
+			//creates the logo preview form
+			imgPreview = new imagePreview();
 
             //Looks for themes and adds all found to combobox
             DirectoryInfo directory = new DirectoryInfo(".\\Textures");
@@ -45,15 +54,15 @@ namespace Terraria_logo_maker
 
         private void generateLogo()
         {
+			int charSize = 13;
             //Creates the error image
-            //Adds all needed images to list of images
             theme = themeComboBox.Text;
             string text = textTextBox.Text;
             //first, create a dummy bitmap just to get a graphics object
             Image errorImg = new Bitmap(1, 1);
             Graphics drawing = Graphics.FromImage(errorImg);
             //measure the string to see how big the image needs to be
-            SizeF textSize = drawing.MeasureString("Error, unsupported", new Font("Arial", 11));
+            SizeF textSize = drawing.MeasureString("unsupported", new Font("Andy", charSize));
             //free up the dummy image and old graphics object
             errorImg.Dispose();
             drawing.Dispose();
@@ -64,15 +73,18 @@ namespace Terraria_logo_maker
             drawing.Clear(Color.Transparent);
             //create a brush for the text
             Brush textBrush = new SolidBrush(Color.Red);
-            drawing.DrawString("Error, unsupported", new Font("Arial", 11), textBrush, 0, 0);
-            drawing.DrawString("character", new Font("Arial", 11), textBrush, 30, 12);
-            drawing.Save();
+            drawing.DrawString("Error,", new Font("Andy", charSize), textBrush, 0, 0);
+            drawing.DrawString("unsupported", new Font("Andy", charSize), textBrush, 0, 12);
+			drawing.DrawString("character", new Font("Andy", charSize), textBrush, 0, 24);
+			drawing.Save();
             textBrush.Dispose();
             drawing.Dispose();
 
             Bitmap errorImage = (Bitmap)errorImg;
 
-            List<Bitmap> images = new List<Bitmap>();
+
+			//Adds all needed images to list of images
+			List<Bitmap> images = new List<Bitmap>();
 
             if (checkBox1.Checked == true)
             {//If tree is selected, adds a tree
@@ -180,16 +192,11 @@ namespace Terraria_logo_maker
 
        
         private void infoButton_Click(object sender, EventArgs e)
-        {//Credits/info button
-            MessageBox.Show("If the unsupported character image appears, it means that the theme you are using does not support that character, or the folder structure is incorrect. \n\nCredits: \nWritten by darthmorf AKA Sam Poirier \nTemplate sprites darthmorf AKA Sam Poirier \nThanks to devilbro for his base logo sprites and Terraria Logo Guide - he was the first.",
-                                     "Info and Credits",
-                                     MessageBoxButtons.OK);
-        }
+        {
+		}
 
         private void saveBtn_Click(object sender, EventArgs e)
-        {//Saves the image
-            string dateTime = DateTime.Now.ToString("MM\\_dd\\_yyyy h\\_mm\\_ss");
-            imgPreview.outputPictureBox.Image.Save(outputPathTxtBx.Text + "\\" + theme + " Logo " + dateTime + ".png");
+        {
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -201,5 +208,47 @@ namespace Terraria_logo_maker
         {
             generateLogo();
         }
-    }
+
+		private void mainForm_Load(object sender, EventArgs e)
+		{
+
+		}
+
+		private void pictureBox5_Click(object sender, EventArgs e)
+		{
+			//Credits/info form
+
+			IC = new InfoCredits();
+			IC.ShowDialog();
+		}
+
+		private void infoButton_MouseEnter(object sender, EventArgs e)
+		{
+			infoButton.Image = infoBtnImgLst.Images[1];
+		}
+
+		private void infoButton_MouseLeave(object sender, EventArgs e)
+		{
+
+			infoButton.Image = infoBtnImgLst.Images[0];
+		}
+
+		private void pictureBox5_Click_1(object sender, EventArgs e)
+		{
+			//Saves the image
+			string dateTime = DateTime.Now.ToString("MM\\_dd\\_yyyy h\\_mm\\_ss");
+			imgPreview.outputPictureBox.Image.Save(outputPathTxtBx.Text + "\\" + theme + " Logo " + dateTime + ".png");
+		}
+
+		private void saveButton_MouseEnter(object sender, EventArgs e)
+		{
+			saveButton.Image = saveBtnImgLst.Images[1];
+		}
+
+		private void saveButton_MouseLeave(object sender, EventArgs e)
+		{
+
+			saveButton.Image = saveBtnImgLst.Images[0];
+		}
+	}
 }

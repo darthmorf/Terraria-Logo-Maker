@@ -55,6 +55,12 @@
     <Compile Include="imagePreview.Designer.cs">
       <DependentUpon>imagePreview.cs</DependentUpon>
     </Compile>
+    <Compile Include="InfoCredits.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InfoCredits.Designer.cs">
+      <DependentUpon>InfoCredits.cs</DependentUpon>
+    </Compile>
     <Compile Include="mainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -65,6 +71,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="imagePreview.resx">
       <DependentUpon>imagePreview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InfoCredits.resx">
+      <DependentUpon>InfoCredits.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="mainForm.resx">
       <DependentUpon>mainForm.cs</DependentUpon>
