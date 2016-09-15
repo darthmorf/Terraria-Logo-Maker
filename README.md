@@ -22,6 +22,8 @@ I recommend before you start out making a few normal logos to get the hang of it
 Before any info on how to actually make them, it's important to know how they must be structured.
 TLM will support any ascii character. Each character image should be in png format, with the name of the file being it's ascii value. For example '&' has an ascii value of 38, so the '&' file would be called 38.png (you can look up the values here: http://www.ascii-code.com/ - look at the value marked 'Dec' for decimal). All images must be in a folder with the name of the folder being the name of the theme. As well as the ascii characters, the theme could include a tree equivalent (titled tree.png). For the logo to end properly, the theme must also include a starter image (starter.png) and an ender image (ender.png). These wrap off the ends, so the logo doesn't stop without closing. Don't forget to add a space as well - (ascii value 38) you can do this easily by using the starter and ender images together.
 There is a template set that you're welcome to look at and modify to make your own that can be downloaded here:
-TLM_Template_Theme.zip
+https://github.com/darthmorf/Terraria-Logo-Maker/releases/download/v1.0/TLM_Template_Theme.zip
 
 For more information visit the TCF thread: http://forums.terraria.org/index.php?threads/program-darthmorfs-terraria-logo-maker.48889/
+
+You can also fill in the contact form on my website (http://madmog.co.uk/) or submit an issue here pn github
