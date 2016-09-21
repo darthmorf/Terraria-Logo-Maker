@@ -41,9 +41,9 @@ namespace Terraria_logo_maker
             {
                 themeComboBox.SelectedIndex = 0;
             }
-            catch
-            {
-                MessageBox.Show("Error - no themes found.");
+            catch (Exception e)
+			{
+                MessageBox.Show(e + "\n\nError - no themes found.");
             }
             
 
@@ -151,8 +151,6 @@ namespace Terraria_logo_maker
             //updates the logo preview window
             imgPreview.outputPictureBox.Image = outputImage;
             imgPreview.Show();
-
-
         }
 
         
@@ -185,18 +183,11 @@ namespace Terraria_logo_maker
             return bitmap;
         }
 
+
+		//update logo whenever theme, tree or text changed
         private void textTextBox_TextChanged(object sender, EventArgs e)
         {
             generateLogo();
-        }
-
-       
-        private void infoButton_Click(object sender, EventArgs e)
-        {
-		}
-
-        private void saveBtn_Click(object sender, EventArgs e)
-        {
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -209,10 +200,7 @@ namespace Terraria_logo_maker
             generateLogo();
         }
 
-		private void mainForm_Load(object sender, EventArgs e)
-		{
-
-		}
+		
 
 		private void pictureBox5_Click(object sender, EventArgs e)
 		{
@@ -223,32 +211,39 @@ namespace Terraria_logo_maker
 		}
 
 		private void infoButton_MouseEnter(object sender, EventArgs e)
-		{
+		{//mouse hover graphic
 			infoButton.Image = infoBtnImgLst.Images[1];
 		}
 
 		private void infoButton_MouseLeave(object sender, EventArgs e)
-		{
-
+		{//mouse hover graphic
 			infoButton.Image = infoBtnImgLst.Images[0];
 		}
 
-		private void pictureBox5_Click_1(object sender, EventArgs e)
-		{
-			//Saves the image
-			string dateTime = DateTime.Now.ToString("MM\\_dd\\_yyyy h\\_mm\\_ss");
-			imgPreview.outputPictureBox.Image.Save(outputPathTxtBx.Text + "\\" + theme + " Logo " + dateTime + ".png");
-		}
-
 		private void saveButton_MouseEnter(object sender, EventArgs e)
-		{
+		{//mouse hover graphic
 			saveButton.Image = saveBtnImgLst.Images[1];
 		}
 
 		private void saveButton_MouseLeave(object sender, EventArgs e)
-		{
+		{//mouse hover graphic
 
 			saveButton.Image = saveBtnImgLst.Images[0];
 		}
+		private void pictureBox5_Click_1(object sender, EventArgs e)
+		{
+			//Saves the image
+			MessageBox.Show("Image Saved Successfully!", "");
+
+			string dateTime = DateTime.Now.ToString("MM\\_dd\\_yyyy h\\_mm\\_ss");
+			imgPreview.outputPictureBox.Image.Save(outputPathTxtBx.Text + "\\" + theme + " Logo " + dateTime + ".png");
+		}
+
+
+
+		private void infoButton_Click(object sender, EventArgs e){}
+		private void saveBtn_Click(object sender, EventArgs e){}
+		private void mainForm_Load(object sender, EventArgs e){}
 	}
+
 }
